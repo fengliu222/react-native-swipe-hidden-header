@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ef371ae-afbd-47f8-b079-80125ee82dfa" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -22,8 +23,8 @@
           <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/App.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="61">
-                  <caret line="30" column="10" lean-forward="false" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
+                <state relative-caret-position="331">
+                  <caret line="27" column="3" lean-forward="true" selection-start-line="5" selection-start-column="2" selection-end-line="27" selection-end-column="3" />
                   <folding>
                     <element signature="e#0#26#0" expanded="true" />
                   </folding>
@@ -34,7 +35,7 @@
           <file leaf-file-name="swipeHiddenHeader.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/swipeHiddenHeader.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="229">
+                <state relative-caret-position="145">
                   <caret line="85" column="23" lean-forward="false" selection-start-line="85" selection-start-column="23" selection-end-line="85" selection-end-column="23" />
                   <folding>
                     <element signature="e#0#52#0" expanded="true" />
@@ -46,8 +47,8 @@
           <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/README.md">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="48">
-                  <caret line="2" column="15" lean-forward="false" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+                <state relative-caret-position="336">
+                  <caret line="14" column="6" lean-forward="true" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
                   <folding />
                 </state>
               </provider>
@@ -245,12 +246,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494616660498</updated>
-      <workItem from="1494616661977" duration="5261000" />
+      <workItem from="1494616661977" duration="5358000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5261000" />
+    <option name="totallyTimeSpent" value="5358000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -295,16 +296,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="30" column="10" lean-forward="false" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/style.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -339,7 +330,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/swipeHiddenHeader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
+        <state relative-caret-position="145">
           <caret line="85" column="23" lean-forward="false" selection-start-line="85" selection-start-column="23" selection-end-line="85" selection-end-column="23" />
           <folding>
             <element signature="e#0#52#0" expanded="true" />
@@ -347,10 +338,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="27" column="3" lean-forward="true" selection-start-line="5" selection-start-column="2" selection-end-line="27" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="15" lean-forward="false" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+        <state relative-caret-position="336">
+          <caret line="14" column="6" lean-forward="true" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
           <folding />
         </state>
       </provider>
