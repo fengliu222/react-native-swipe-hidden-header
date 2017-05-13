@@ -1,4 +1,5 @@
 # React Native Swipe Hidden Header
+![npm version](https://img.shields.io/npm/v/react-native-swipe-hidden-header.svg?style=flat-square)
 
 A react native component that can hide navigator bar when user swipe list.
 
@@ -65,7 +66,7 @@ render() {
   }
 ```
 
-#### Props
+### Props
 
 | Prop | Type | Description |
 |---|---|---|
