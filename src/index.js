@@ -18,9 +18,9 @@ class SwipeHiddenHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      headerHeight: 64,
-      offsetY: 0,
-      headerTop:0
+      headerHeight  : 64,
+      offsetY       : 0,
+      headerOffsetY :0
     };
   }
 
@@ -28,7 +28,7 @@ class SwipeHiddenHeader extends Component {
     let offsetY = current
     let lastY = last
     let headerHeight = this.state.headerHeight
-    let headerTop = this.state.headerTop
+    let headerTop = this.state.headerOffsetY
 
     if(offsetY > lastY){
       if(offsetY < headerHeight){
@@ -65,7 +65,7 @@ class SwipeHiddenHeader extends Component {
     })
     this.setState({
       offsetY,
-      headerTop: this.calcHeaderTop(offsetY,lastOffsetY)
+      headerOffsetY : this.calcHeaderTop(offsetY,lastOffsetY)
     })
   }
 
@@ -87,7 +87,7 @@ class SwipeHiddenHeader extends Component {
     return (
       <View style={[styles.container, this.props.style]}>
         <View style={[styles.header.container, this.props.headerWrapStyle, {
-          top: this.state.headerTop
+          top: this.state.headerOffsetY
         }]} onLayout={this.onHeaderLayout}>
           <Header/>
         </View>
