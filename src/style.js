@@ -13,6 +13,7 @@ export default {
   },
   scroll:{
     wrap:{
+      flex:1,
       zIndex: 10
     }
   }

@@ -11,8 +11,9 @@ class SwipeHiddenHeader extends Component {
     header: PropTypes.func.isRequired,
     scrollViewProps: PropTypes.object,
     renderScrollComponent: PropTypes.func,
+    startHiddenHeaderOffset: PropTypes.number,
     style: PropTypes.object,
-    headerWrapStyle: PropTypes.object
+    headerWrapStyle: PropTypes.object,
   };
 
   constructor(props) {
@@ -20,34 +21,58 @@ class SwipeHiddenHeader extends Component {
     this.state = {
       headerHeight  : 64,
       offsetY       : 0,
-      headerOffsetY :0
+      headerOffsetY : 0
     };
   }
 
-  calcHeaderTop = (current, last) =>{
-    let offsetY = current
-    let lastY = last
-    let headerHeight = this.state.headerHeight
-    let headerTop = this.state.headerOffsetY
+  /**
+   * Calculate header offset Y.
+   * @param currentOffsetY
+   * @param lastOffsetY
+   * @returns {number}
+   */
+  calcHeaderOffsetY = (currentOffsetY, lastOffsetY) =>{
+    const startHiddenOffset = (this.props.startHiddenHeaderOffset !== undefined) ? this.props.startHiddenHeaderOffset : this.state.headerHeight
+    const headerOffsetY = this.state.headerOffsetY
 
-    if(offsetY > lastY){
-      if(offsetY < headerHeight){
-        return headerTop
+    /**
+     * Swipe up
+     */
+    if(currentOffsetY > lastOffsetY){
+      if(currentOffsetY < startHiddenOffset){
+        return headerOffsetY
       }
-      if(-headerTop >= headerHeight){
-        return -headerHeight
+      if(-headerOffsetY > this.state.headerHeight){
+        return -this.state.headerHeight
       }
-      return headerTop-(offsetY - lastY)
+      return headerOffsetY-(currentOffsetY - lastOffsetY)
     }else{
-      if(headerTop + (lastY - offsetY) > 0){
+      /**
+       * Swipe down
+       */
+      if(headerOffsetY + (lastOffsetY - currentOffsetY) > 0){
         return 0
       }else{
-        return headerTop + (lastY - offsetY)
+        return headerOffsetY + (lastOffsetY - currentOffsetY)
       }
     }
 
   }
 
+  calcScrollViewTop = ()=>{
+    if(this.state.offsetY > 0 && this.state.offsetY < this.state.headerHeight){
+      return this.state.headerHeight - this.state.offsetY
+    }else if(this.state.offsetY <= 0){
+      return this.state.headerHeight
+    }else{
+      return 0
+    }
+  }
+  /**
+   * Get current header component height.
+   * The height value will be the default value of startHiddenOffset in `calcHeaderOffsetY` function.
+   * @param e
+   */
   onHeaderLayout = (e)=> {
     this.setState({
       headerHeight: e.nativeEvent.layout.height
@@ -55,31 +80,88 @@ class SwipeHiddenHeader extends Component {
   }
 
   onScroll = (e)=>{
-    this.props.scrollViewProps.onScroll && this.props.scrollViewProps.onScroll(e)
-    let offsetY = e.nativeEvent.contentOffset.y
+    /**
+     * Allow parent component do something when 'onScroll' event is fired.
+     */
+    if(!this.props.renderScrollComponent){
+      this.props.scrollViewProps.onScroll && this.props.scrollViewProps.onScroll(e)
+    }
+
+    const offsetY = e.nativeEvent.contentOffset.y
     const lastOffsetY = this.state.offsetY
-    if(offsetY > e.nativeEvent.layoutMeasurement.height) return
+
+    /**
+     * Prevent animation when ios scroll bounce.
+     */
+    const contentHeight = e.nativeEvent.contentSize.height
+    const layoutHeight = e.nativeEvent.layoutMeasurement.height
+    if(offsetY <= 0) {
+      this.setState({
+        offsetY,
+      })
+      return
+    }
+    if(contentHeight / layoutHeight <= 1){
+      if(offsetY > 0){
+        this.setState({
+          offsetY,
+        })
+        return
+      }
+    }else{
+      if(offsetY > (contentHeight - layoutHeight)){
+        this.setState({
+          offsetY,
+        })
+        return
+      }
+    }
+
     LayoutAnimation.configureNext({
       ...LayoutAnimation.Presets.linear,
       duration: 100
     })
+
     this.setState({
       offsetY,
-      headerOffsetY : this.calcHeaderTop(offsetY,lastOffsetY)
+      headerOffsetY : this.calcHeaderOffsetY(offsetY,lastOffsetY)
     })
   }
+
+  scrollViewStyle = ()=> ({
+    position:'absolute',
+    left:0,
+    right:0,
+    top: this.calcScrollViewTop(),
+    bottom:0
+  })
 
   renderScrollView(){
     return (
       <ScrollView
-        scrollEventThrottle={24}
+        scrollEventThrottle={16}
         {...this.props.scrollViewProps}
         onScroll={this.onScroll}
+        style={this.scrollViewStyle()}
       >
-        <View style={{height: this.state.headerHeight}}></View>
         {this.props.children}
       </ScrollView>
     )
+  }
+
+  /**
+   * Inject onScroll prop into custom scroll component
+   */
+  renderCustomScrollView(){
+    const customScrollView = this.props.renderScrollComponent()
+    return React.cloneElement(customScrollView, {
+      scrollEventThrottle: 16,
+      style: this.scrollViewStyle(),
+      onScroll: (e)=> {
+        this.onScroll(e)
+        customScrollView.props.onScroll && customScrollView.props.onScroll(e)
+      }
+    })
   }
 
   render() {
@@ -92,7 +174,7 @@ class SwipeHiddenHeader extends Component {
           <Header/>
         </View>
         <View style={styles.scroll.wrap}>
-          {this.props.renderScrollComponent ? this.props.renderScrollComponent() : this.renderScrollView()}
+          {this.props.renderScrollComponent ? this.renderCustomScrollView() : this.renderScrollView()}
         </View>
       </View>
     );
@@ -101,3 +183,4 @@ class SwipeHiddenHeader extends Component {
 }
 
 export default SwipeHiddenHeader;
+
