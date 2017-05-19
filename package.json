@@ -1,6 +1,6 @@
 {
   "name": "react-native-swipe-hidden-header",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Moe",
   "license": "MIT",
   "main": "./src/index.js",
@@ -8,5 +8,18 @@
   "dependencies": {
     "react": "16.0.0-alpha.6",
     "react-native": "^0.43.4"
+  },
+  "devDependencies": {
+    "babel-preset-react-native": "1.9.1"
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          "react-native"
+        ],
+        "retainLines": true
+      }
+    }
   }
 }

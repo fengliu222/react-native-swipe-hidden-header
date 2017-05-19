@@ -61,7 +61,7 @@ class SwipeHiddenHeader extends Component {
 
   calcScrollViewTop = ()=>{
     if(this.state.offsetY > 0 && this.state.offsetY < this.state.headerHeight){
-      return this.state.headerHeight - this.state.offsetY
+      return this.state.headerHeight - this.state.offsetY - 3
     }else if(this.state.offsetY <= 0){
       return this.state.headerHeight
     }else{
@@ -95,6 +95,8 @@ class SwipeHiddenHeader extends Component {
      */
     const contentHeight = e.nativeEvent.contentSize.height
     const layoutHeight = e.nativeEvent.layoutMeasurement.height
+    LayoutAnimation.configureNext(null)
+
     if(offsetY <= 0) {
       this.setState({
         offsetY,
@@ -117,10 +119,10 @@ class SwipeHiddenHeader extends Component {
       }
     }
 
-    LayoutAnimation.configureNext({
-      ...LayoutAnimation.Presets.linear,
-      duration: 100
-    })
+    // LayoutAnimation.configureNext({
+    //   ...LayoutAnimation.Presets.linear,
+    //   duration: 100
+    // })
 
     this.setState({
       offsetY,
