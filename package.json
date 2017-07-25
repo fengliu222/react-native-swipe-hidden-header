@@ -6,11 +6,11 @@
   "main": "./src/index.js",
   "keywords":["react-native","react-native-swipe","react-native-swipe-hidden"],
   "dependencies": {
-    "react": "16.0.0-alpha.6",
-    "react-native": "^0.43.4"
   },
   "devDependencies": {
-    "babel-preset-react-native": "1.9.1"
+    "babel-preset-react-native": "1.9.1",
+    "react": "16.0.0-alpha.6",
+    "react-native": "^0.43.4"
   },
   "babel": {
     "env": {
